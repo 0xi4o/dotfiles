@@ -1,0 +1,9 @@
+# Very minimal, I know.
+# I haven't fully explored Starship.
+# Configuration options: https://starship.rs/config/
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+[nodejs]
+symbol = " "
