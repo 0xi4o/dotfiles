@@ -1,14 +1,16 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/ilango/.oh-my-zsh"
+# Edit this path to your oh-my-zsh installation.
+export ZSH="/home/ir/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+# Agnoster theme requires the Powerline fonts package: https://github.com/powerline/fonts
+ZSH_THEME="agnoster"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -86,6 +88,7 @@ plugins=(
 	terraform
 	vault
 	yarn
+	zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -203,6 +206,41 @@ alias fd='fdfind'
 alias vim='nvim'
 alias new='tmux new -s'
 alias attach='tmux attach -t'
+alias python='python3'
 
 # AWS CLI commands
 alias ssm='aws ssm start-session --target'
+
+fpath+=${ZDOTDIR:-~}/.zsh_functions
+fpath+=${ZDOTDIR:-~}/.zsh_functions
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/ilango/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/ilango/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/ilango/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/ilango/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+#
+#
+# Fix glyphs issue in tmux+alacritty
+export LC_ALL=en_IN.UTF-8
+export LANG=en_IN.UTF-8
+#
+#
+# Set up Linuxbrew
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# Set up starship
+eval "$(starship init zsh)"
+
+# Set up Deno
+export DENO_INSTALL="/home/ir/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
