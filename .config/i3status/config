@@ -1,0 +1,56 @@
+general {
+    output_format = "i3bar"
+    colors = true
+    interval = 5
+}
+
+# order += "ipv6"
+order += "ethernet enp39s0"
+order += "disk /"
+order += "cpu_usage"
+order += "cpu_temperature 0"
+order += "memory"
+order += "volume master"
+# order += "read_file uptime"
+order += "tztime local"
+
+ethernet enp39s0 {
+    format_up = "🌐 %speed"
+    format_down = "🌐: down"
+}
+
+tztime local {
+    format = "%d-%m-%Y %H:%M:%S"
+}
+
+cpu_temperature 0 {
+    format = "🌡️ %degrees °C"
+    path = "/sys/class/hwmon/hwmon1/temp1_input"
+}
+
+cpu_usage {
+    format = "📈 %usage"
+}
+
+memory {
+    format = "🖥️ %used/%total"
+    threshold_degraded = "10%"
+    format_degraded = "MEMORY: %free"
+}
+
+disk "/" {
+    format = "💿 %avail/%total"
+}
+
+volume master {
+    format = "🎵 %volume"
+    format_muted = "🔇 %volume"
+    device = "default"
+    mixer = "Master"
+    mixer_idx = 0
+}
+
+read_file uptime {
+    format = "⬆️: %content"
+    path = "/proc/uptime"
+}
